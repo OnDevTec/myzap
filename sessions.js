@@ -7,6 +7,7 @@ const path = require('path');
 const venom = require('venom-bot');
 const { json } = require('express');
 const { Session } = require('inspector');
+const axios = require('axios').default;
 
 module.exports = class Sessions {
 
@@ -120,6 +121,11 @@ module.exports = class Sessions {
                     if (message.body === 'hi') {
                         client.sendText(message.from, 'Hello\nfriend!');
                     }
+                    axios.post('https://4f7ece44c519.ngrok.io/api/v1/MyTwilio/receiveWhatsAppTeste', {
+                        body: message.body,
+                        from: message.from,
+                        messageId: message.id
+                      });
                 });
             });
         } //setup
