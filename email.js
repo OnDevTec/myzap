@@ -12,7 +12,7 @@ module.exports = (text = '') => {
     const mailOptions = {
         from: 'miguel@wabemaxcafe.com.br',
         to: 'miguelarcjunior@gmail.com, adelcio@ondoctor.app',
-        subject: 'API MYZAP | Status do Envio Mensagem via Whatsapp',
+        subject: 'API MYZAP | Status do Envio de Mensagem via Whatsapp',
         text
     };
 
