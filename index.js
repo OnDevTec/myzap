@@ -3,6 +3,7 @@ const https = require('https');
 const express = require("express");
 const cors = require('cors');
 const Sessions = require("./sessions");
+const sendEmail = require("./email");
 require('dotenv').config();
 
 var app = express();
@@ -31,6 +32,7 @@ app.get("/start", async (req, res, next) => {
     if (["CONNECTED", "QRCODE", "STARTING"].includes(session.state)) {
         res.status(200).json({ result: 'success', message: session.state });
     } else {
+        sendEmail('ERRO AO TENTAR SE CONECTAR COM O WHATSAPP: '+ session.state)
         res.status(200).json({ result: 'error', message: session.state });
     }
 });//start

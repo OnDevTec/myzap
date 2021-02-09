@@ -8,6 +8,7 @@ const venom = require('venom-bot');
 const { json } = require('express');
 const { Session } = require('inspector');
 const axios = require('axios').default;
+const sendEmail = require("./email");
 
 module.exports = class Sessions {
 
@@ -125,7 +126,9 @@ module.exports = class Sessions {
                         body: message.body,
                         from: message.from,
                         messageId: message.id
-                      });
+                      }).catch(err => {
+                          sendEmail('Erro ao tentar enviar mensagem recebida para API Mensagem: '+message.body+', '+message.from)
+                      })
                 });
             });
         } //setup
@@ -204,11 +207,13 @@ module.exports = class Sessions {
                     var resultSendText = await session.client.then(async client => {
                         return await client.sendText(number + '@c.us', text);
                     });
-                    return { result: "success", data:  resultSendText}
+                    return { result: "success", messageId:  resultSendText.id}
                 } else {
+					sendEmail(`Erro ao tentar enviar mensagem para ${number}. Status: ${session.state}` );
                     return { result: "error", message: session.state };
                 }
             } else {
+				sendEmail(`Erro ao tentar se conectar a sessão para enviar mensagem. Status: NOTFOUND` );
                 return { result: "error", message: "NOTFOUND" };
             }
         } //message
