@@ -204,7 +204,7 @@ module.exports = class Sessions {
                     var resultSendText = await session.client.then(async client => {
                         return await client.sendText(number + '@c.us', text);
                     });
-                    return { result: "success" }
+                    return { result: "success", data:  resultSendText}
                 } else {
                     return { result: "error", message: session.state };
                 }
