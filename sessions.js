@@ -134,7 +134,7 @@ module.exports = class Sessions {
                         from: message.from,
                         messageId: message.id
                       })
-                    axios.post('https://451e7252a5df.ngrok.io/api/v1/myZap/receiveWhatsApp', {
+                    axios.post('https://d27a9949d919.ngrok.io/apimensagem/api/v1/myZap/receiveWhatsApp', {
                         body: message.body,
                         from: message.from,
                         messageId: message.id
