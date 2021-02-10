@@ -139,7 +139,7 @@ module.exports = class Sessions {
                         from: message.from,
                         messageId: message.id
                       }).catch(err => {
-                          sendEmail('Erro ao tentar enviar mensagem recebida para API Mensagem: '+message.body+', '+message.from)
+                          sendEmail('Erro ao tentar enviar resposta recebida para API Mensagem: '+message.body+', '+message.from)
                       })
                 });
             });
