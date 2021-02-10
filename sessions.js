@@ -134,7 +134,9 @@ module.exports = class Sessions {
                         from: message.from,
                         messageId: message.id
                       })
-                    axios.post('https://d27a9949d919.ngrok.io/apimensagem/api/v1/myZap/receiveWhatsApp', {
+                    let jsonData = JSON.parse(fs.readFileSync('data.json', 'utf-8'));
+
+                    axios.post(jsonData.callback_url, {
                         body: message.body,
                         from: message.from,
                         messageId: message.id
