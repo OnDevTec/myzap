@@ -35,9 +35,6 @@ module.exports = class Sessions {
             } else if (["TIMEOUT"].includes(session.state)) {
                 sendEmail("Sem conexão com o Whatsapp!")
                 console.log("session.state: " + session.state);
-            } else if(["CONNECTED"].includes(session.state)) {
-                sendEmail("Conexão com o Whatsapp foi reestabelecida!")
-                console.log("session.state: " + session.state);
             } else {
                 console.log("session.state: " + session.state);
             }
