@@ -4,7 +4,8 @@
     "description": "Free OpenSource Whatsapp Api",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node index.js"
     },
     "author": "Bill Barsch",
     "license": "ISC",
@@ -15,6 +16,8 @@
         "express": "^4.17.1",
         "mime": "^2.4.6",
         "nodemailer": "^6.4.17",
-        "venom-bot": "^2.2.3"
+        "nodemon": "^2.0.7",
+        "sharp": "^0.27.1",
+        "venom-bot": "^2.2.6"
     }
 }

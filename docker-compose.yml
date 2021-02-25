@@ -1,0 +1,10 @@
+version: "3"
+
+services: 
+  myzap:
+    build: .
+    command: npm start
+    ports: 
+      - "3333:3333"
+    volumes: 
+      - .:/usr/src/app

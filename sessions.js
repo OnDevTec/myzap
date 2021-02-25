@@ -126,20 +126,26 @@ module.exports = class Sessions {
                     if (message.body === 'hi') {
                         client.sendText(message.from, 'Hello\nfriend!');
                     }
-                    console.log({
-                        body: message.body,
-                        from: message.from,
-                        messageId: message.id
-                      })
+                    console.log(message);
                     let jsonData = JSON.parse(fs.readFileSync('data.json', 'utf-8'));
-
-                    axios.post(jsonData.callback_url, {
-                        body: message.body,
-                        from: message.from,
-                        messageId: message.id
-                      }).catch(err => {
-                          sendEmail('Erro ao tentar enviar resposta recebida para API Mensagem: '+message.body+', '+message.from)
-                      })
+                    
+                    if(message.type == 'chat') {
+                        axios.post(jsonData.callback_url, {
+                            body: message.body,
+                            from: message.from,
+                            messageId: message.id
+                          }).catch(err => {
+                              sendEmail('Erro ao tentar enviar resposta recebida para API Mensagem: '+message.body+', '+message.from)
+                          });
+                    } else {
+                        axios.post(jsonData.callback_url, {
+                            body: '[media]',
+                            from: message.from,
+                            messageId: message.id
+                          }).catch(err => {
+                              sendEmail('Erro ao tentar enviar resposta recebida para API Mensagem: '+message.body+', '+message.from)
+                          });
+                    }
                 });
             });
         } //setup
@@ -212,6 +218,7 @@ module.exports = class Sessions {
         } //getQrcode
 
     static async sendText(sessionName, number, text) {
+        console.log("TESTE")
             var session = Sessions.getSession(sessionName);
             if (session) {
                 if (session.state == "CONNECTED") {
